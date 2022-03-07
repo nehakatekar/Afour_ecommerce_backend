@@ -34,11 +34,9 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
   //update-Admin
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     let product = await Product.findById(req.params.id);
-  
     if (!product) {
       return next(new ErrorHander("Product not found", 404))
     }
-  
     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
@@ -52,7 +50,6 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 // Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
-  
     if (!product) {
       return next(new ErrorHander("Product not found", 404))
     }
@@ -61,10 +58,8 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
       product,
     });
   });
-  
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
-  
     if (!product) {
       return next(new ErrorHander("Product not found", 404))
     }
